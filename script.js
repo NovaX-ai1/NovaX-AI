@@ -11,13 +11,20 @@ setTimeout(() => {
 }, 1000);
 
 function send() {
-  let text = document.getElementById("input").value.toLowerCase();
+  let text = document.getElementById("input").value.toLowerCase().trim();
 
   let reply = "I don't understand 🤖";
 
   if (text.includes("hello")) {
     reply = "Hello! I am NovaX AI 👋";
   }
+  else if (text.includes("how are you")) {
+    reply = "I'm running perfectly ⚡";
+  }
+  else if (text.includes("your name")) {
+    reply = "My name is NovaX AI 🚀";
+  }
 
   document.getElementById("reply").innerText = reply;
+  document.getElementById("input").value = "";
 }

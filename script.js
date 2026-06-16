@@ -1,17 +1,10 @@
-setTimeout(() => {
-  document.body.innerHTML = `
-    <div style="text-align:center;font-family:sans-serif;margin-top:50px;">
-      <h2>NovaX AI 🚀</h2>
-      <p id="reply">Ask me something...</p>
-
-      <input id="input" placeholder="Type here..." style="padding:10px;width:80%">
-      <button onclick="send()" style="padding:10px;">Send</button>
-    </div>
-  `;
-}, 1000);
-
 function send() {
-  let text = document.getElementById("input").value.toLowerCase().trim();
+  let input = document.getElementById("input");
+  let text = input.value.toLowerCase().trim();
+
+  if (text === "") return;
+
+  addMessage("You: " + text);
 
   let reply = "I don't understand 🤖";
 
@@ -24,7 +17,18 @@ function send() {
   else if (text.includes("your name")) {
     reply = "My name is NovaX AI 🚀";
   }
+  else if (text.includes("help")) {
+    reply = "Try: hello, how are you, your name";
+  }
 
-  document.getElementById("reply").innerText = reply;
-  document.getElementById("input").value = "";
+  addMessage("NovaX AI: " + reply);
+
+  input.value = "";
+}
+
+function addMessage(msg) {
+  let chatBox = document.getElementById("chatBox");
+  let p = document.createElement("p");
+  p.innerText = msg;
+  chatBox.appendChild(p);
 }

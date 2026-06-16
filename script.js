@@ -11,11 +11,11 @@ setTimeout(() => {
 }, 1000);
 
 function send() {
-  let text = document.getElementById("input").value;
+  let text = document.getElementById("input").value.toLowerCase();
 
-  let reply = "I don't understand yet 🤖";
+  let reply = "I don't understand 🤖";
 
-  if (text.toLowerCase().includes("hello")) {
+  if (text.includes("hello")) {
     reply = "Hello! I am NovaX AI 👋";
   }
 

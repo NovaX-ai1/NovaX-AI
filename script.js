@@ -4,7 +4,7 @@ function send() {
 
   if (text === "") return;
 
-  addMessage("You: " + text);
+  addMessage(text, "user");
 
   let reply = "I don't understand 🤖";
 
@@ -20,15 +20,32 @@ function send() {
   else if (text.includes("help")) {
     reply = "Try: hello, how are you, your name";
   }
+  else if (text.includes("joke")) {
+    reply = "Why did the computer go to doctor? Because it had virus 😄";
+  }
 
-  addMessage("NovaX AI: " + reply);
+  setTimeout(() => {
+    addMessage(reply, "ai");
+  }, 500);
 
   input.value = "";
 }
 
-function addMessage(msg) {
+function addMessage(text, type) {
   let chatBox = document.getElementById("chatBox");
-  let p = document.createElement("p");
-  p.innerText = msg;
-  chatBox.appendChild(p);
+
+  let div = document.createElement("div");
+  div.classList.add("msg");
+
+  if (type === "user") {
+    div.classList.add("user");
+    div.innerText = "You: " + text;
+  } else {
+    div.classList.add("ai");
+    div.innerText = "NovaX AI: " + text;
+  }
+
+  chatBox.appendChild(div);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
 }

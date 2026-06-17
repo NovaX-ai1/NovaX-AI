@@ -144,3 +144,16 @@ async function sendMessage() {
 
 </body>
 </html>
+<script>
+function sendMessage() {
+  let msg = document.getElementById("msg").value;
+
+  document.getElementById("chat").innerHTML += 
+    "<p>You: " + msg + "</p>";
+
+  document.getElementById("chat").innerHTML += 
+    "<p>NovaX AI: Hello! I got your message</p>";
+
+  document.getElementById("msg").value = "";
+}
+</script>

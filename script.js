@@ -1,3 +1,4 @@
+console.log("sendMessage working");
 function sendMessage() {
   let input = document.getElementById("input");
   let chat = document.getElementById("chat");

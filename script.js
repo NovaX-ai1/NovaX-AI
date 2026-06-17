@@ -2,19 +2,17 @@ function sendMessage() {
   let input = document.getElementById("input");
   let chat = document.getElementById("chat");
 
-  let userText = input.value;
-  if (userText === "") return;
+  let text = input.value.trim();
+  if (text === "") return;
 
-  // user message
-  chat.innerHTML += <div class="msg user">You: ${userText}</div>;
+  chat.innerHTML += <div class="msg user">${text}</div>;
 
-  // fake AI reply (working demo)
-  let reply = getAIResponse(userText);
+  let reply = getAIResponse(text);
 
   setTimeout(() => {
-    chat.innerHTML += <div class="msg ai">NovaX AI: ${reply}</div>;
+    chat.innerHTML += <div class="msg ai">${reply}</div>;
     chat.scrollTop = chat.scrollHeight;
-  }, 500);
+  }, 400);
 
   input.value = "";
 }
@@ -22,10 +20,10 @@ function sendMessage() {
 function getAIResponse(text) {
   text = text.toLowerCase();
 
-  if (text.includes("hello")) return "Hello! Main NovaX AI hoon 🤖";
-  if (text.includes("kia hal")) return "Main theek hoon! Tum sunao 😊";
-  if (text.includes("name")) return "Mera naam NovaX AI hai 🚀";
-  if (text.includes("help")) return "Main tumhari coding aur AI mein help kar sakta hoon 💡";
+  if (text.includes("hello")) return "Hello 👋 Main NovaX AI hoon";
+  if (text.includes("kaise ho")) return "Main theek hoon 😄 tum sunao";
+  if (text.includes("name")) return "Mera naam NovaX AI hai 🤖";
+  if (text.includes("help")) return "Main coding aur AI mein help kar sakta hoon 💡";
 
-  return "Mujhe samajh nahi aya, dobara try karo 🙂";
+  return "Mujhe samajh nahi aya 🤔 dobara try karo";
 }

@@ -1,51 +1,31 @@
-function send() {
+function sendMessage() {
   let input = document.getElementById("input");
-  let text = input.value.toLowerCase().trim();
+  let chat = document.getElementById("chat");
 
-  if (text === "") return;
+  let userText = input.value;
+  if (userText === "") return;
 
-  addMessage(text, "user");
+  // user message
+  chat.innerHTML += <div class="msg user">You: ${userText}</div>;
 
-  let reply = "I don't understand 🤖";
-
-  if (text.includes("hello")) {
-    reply = "Hello! I am NovaX AI 👋";
-  }
-  else if (text.includes("how are you")) {
-    reply = "I'm running perfectly ⚡";
-  }
-  else if (text.includes("your name")) {
-    reply = "My name is NovaX AI 🚀";
-  }
-  else if (text.includes("help")) {
-    reply = "Try: hello, how are you, your name";
-  }
-  else if (text.includes("joke")) {
-    reply = "Why did the computer go to doctor? Because it had virus 😄";
-  }
+  // fake AI reply (working demo)
+  let reply = getAIResponse(userText);
 
   setTimeout(() => {
-    addMessage(reply, "ai");
+    chat.innerHTML += <div class="msg ai">NovaX AI: ${reply}</div>;
+    chat.scrollTop = chat.scrollHeight;
   }, 500);
 
   input.value = "";
 }
 
-function addMessage(text, type) {
-  let chatBox = document.getElementById("chatBox");
+function getAIResponse(text) {
+  text = text.toLowerCase();
 
-  let div = document.createElement("div");
-  div.classList.add("msg");
+  if (text.includes("hello")) return "Hello! Main NovaX AI hoon 🤖";
+  if (text.includes("kia hal")) return "Main theek hoon! Tum sunao 😊";
+  if (text.includes("name")) return "Mera naam NovaX AI hai 🚀";
+  if (text.includes("help")) return "Main tumhari coding aur AI mein help kar sakta hoon 💡";
 
-  if (type === "user") {
-    div.classList.add("user");
-    div.innerText = "You: " + text;
-  } else {
-    div.classList.add("ai");
-    div.innerText = "NovaX AI: " + text;
-  }
-
-  chatBox.appendChild(div);
-
-  chatBox.scrollTop = chatBox.scrollHeight;
+  return "Mujhe samajh nahi aya, dobara try karo 🙂";
 }
